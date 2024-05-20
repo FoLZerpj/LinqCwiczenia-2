@@ -310,7 +310,22 @@ namespace LinqTutorials
         /// </summary>
         public static IEnumerable<object> Task10()
         {
-            IEnumerable<object> result = null;
+            IEnumerable<object> result = (
+                from emp in Emps
+                select new
+                {
+                    Ename = emp.Ename,
+                    Job = emp.Job,
+                    Hiredate = emp.HireDate
+                }).Union(new Object[]
+                {
+                    new
+                    {
+                        Ename = "No value",
+                        Job = (string)null,
+                        Hiredate = (DateTime?)null
+                    }
+                });
             return result;
         }
 
